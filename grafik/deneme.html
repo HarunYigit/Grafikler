@@ -1,0 +1,165 @@
+<html>
+<head>
+<style>
+    #chatdiv{
+background-color: rgba(185, 92, 76, 0.849);
+border-radius: 5px;
+    }
+    .chatkare{
+        position: absolute;
+background-color: black;
+border-radius: 5px;
+border:1px solid white;
+color:white;
+margin: 5px;
+cursor: pointer;
+    }
+.chatkare:hover{
+ border-color:red;
+}
+</style>
+</head>
+<body>
+<div id = "chatdiv" style="width:600px;height:400px;position:absolute;left:300px;top:100px;color:White;">
+
+</div>
+
+</body>
+<script>
+
+function üret(div,data1,data2){
+var renkazalma=254/data1.length;
+var f = document.getElementById(div);
+var anayansıtmaç = document.createElement("p");
+anayansıtmaç.style.position="absolute";
+anayansıtmaç.style.left="5px";
+anayansıtmaç.style.top="0px";
+anayansıtmaç.style.color="white";
+f.appendChild(anayansıtmaç)
+var enbuyuk=0;
+var toplam=0;
+for(g=0;g<data1.length;g++){
+    var değer=data1[g];
+    if(parseInt(değer)>enbuyuk){
+        enbuyuk=parseInt(değer);
+    }
+    toplam+=parseInt(değer);
+}
+for(gg=0;gg<data1.length*40;gg++){
+for(g=0;g<data1.length-1;g++){
+    var değer=data1[g];
+    var değer2=data2[g];
+    var değerr=data1[g+1];
+    var değerr2=data2[g+1];
+ if(değerr>değer){
+     data1[g+1]=değer;
+data1[g]=değerr;
+data2[g]=değer2;
+data2[g+1]=değerr2;
+ }
+
+}
+}
+var arttop=0;
+var left=0;
+var top=0;
+var ilkvid=0;
+var soldançıkıcakleft=0;
+var ilkheit=0;
+var vid=f.offsetWidth;
+var indexv=vid/toplam;
+var artıcakleft=((indexv*enbuyuk)  / data1.length);
+var artıcaktop=((indexh*enbuyuk)  / data1.length);
+var ilkleft=0;
+var ilkdefamı=true;
+var eksilicek1=0;
+//(f.offsetWidth/2)-((indexv*değer) /2)
+//(f.offsetHeight/2)-((indexh*değer) /2)
+//  left= a.style.left=(f.offsetWidth/2)-((indexv*değer) /2);
+//top=  a.style.top=(f.offsetHeight/2)-((indexh*değer) /2);
+for(i=0;i<data1.length;i++){
+    let değer=data1[i];
+   let değer2=data2[i];
+var vid=f.offsetWidth;
+var heit=f.offsetHeight;
+
+console.log(enbuyuk);
+var indexv=vid/toplam;
+var indexh=heit/toplam;
+let a= document.createElement("div");
+a.className="chatkare";
+a.style.width=(indexv*değer) + "px";
+a.style.height=(indexh*değer) + "px";
+console.log(indexv + " " +indexh);
+if(i==0){
+    a.style.left=(f.offsetWidth/2)-((indexv*değer) /2);
+    ilkleft=  (f.offsetWidth/2)-((indexv*değer) /2);
+    a.style.top=(f.offsetHeight/2)-((indexh*değer) /2);
+    left= a.style.left=(f.offsetWidth/2)-((indexv*değer) /2);
+  top=  a.style.top=(f.offsetHeight/2)-((indexh*değer) /2);
+  ilkvid=((f.offsetWidth/2)-((indexv*değer) /2)) + (indexv*değer) ;
+  ilkheit=((f.offsetHeight/2)-((indexh*değer) /2))+(indexh*değer);
+
+}
+else{
+    a.style.left=(left )+"px";
+    a.style.top=(top -((indexh*değer)+5)) + "px";
+   if(left +(indexv*değer) >ilkvid){
+  a.style.left=(ilkvid+5 + "px");
+  a.style.top=top +"px";
+  top+=(indexh*değer)+artıcakleft;
+   }
+
+ //  if(left + (indexv*değer) < ilkleft){
+  //a.style.left=(ilkvid-5 + "px");
+  //a.style.backgroundColor="white";
+  //a.style.top=top +"px";
+  //top+=(indexh*değer)+artıcakleft;
+   //}
+
+if(top  > ilkheit){
+    a.style.top=(ilkheit+5) + "px";
+  a.style.left=(ilkvid -( eksilicek1+artıcakleft)) + "px";
+  top+=(indexh*değer);
+eksilicek1+=((indexv*değer)+artıcakleft);
+
+
+}
+
+console.log(  "fasddas=" +  (ilkvid -( eksilicek1+artıcakleft)) + "," +ilkleft);
+
+if(ilkvid - ( eksilicek1+artıcakleft)  < ilkleft  && top > ilkheit){
+a.style.left=(ilkleft-15) +"px";
+if(ilkdefamı==true){
+ artıcaktop=  ((indexh*enbuyuk)  / (data1.length-i));
+ ilkdefamı=false;
+}
+  a.style.top=(ilkheit -arttop) +"px";
+arttop+=artıcaktop;
+   }
+
+   soldançıkıcakleft+=artıcakleft;
+    left +=(indexv*değer) +artıcakleft;
+
+}
+
+a.onmouseover = function (){
+    anayansıtmaç.innerHTML=değer;
+
+}
+a.onmouseleave = function (){
+    anayansıtmaç.innerHTML= "";
+
+}
+a.style.backgroundColor="rgb("+  (renkazalma * i)+","+ (renkazalma * i)+ "," + (renkazalma * i)+")";
+f.appendChild(a);
+}
+
+}
+
+var g=[15,12,151,56,15,13,15,25,350,15,45];
+var ü=["a","b","c","d","e","f","g","h","j","k","l","m","n","o","ö","p","r","s","ş","t","y","v","a","z"];
+üret("chatdiv",g,ü);
+
+</script>
+</html>
